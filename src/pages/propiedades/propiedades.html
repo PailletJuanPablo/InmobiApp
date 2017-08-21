@@ -1,0 +1,28 @@
+
+
+<ion-content padding color="principal" class="card-background-page" >
+
+  <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()" [showCancelButton] ="true" (ionCancel)="cargarpropiedadeslocales()"></ion-searchbar>
+  
+  
+
+  
+  <div *ngIf="!propiedades">
+<div text-center> <h3> Deslice hacia abajo para cargar propiedades... </h3></div>
+</div>
+  <ion-refresher (ionRefresh)="doRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+    <ion-card *ngFor="let item of propiedades" (click)="itemTapped($event, item)">
+    <div class="containerimg">
+
+      <img [src]="item.featured_image_urls.medium"> </div>
+      <div padding class="card-title" [innerHTML]="item.title.rendered"></div>
+     
+ 
+
+</ion-card>
+    
+
+
+</ion-content>
